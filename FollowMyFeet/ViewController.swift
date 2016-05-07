@@ -20,6 +20,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.map.showsUserLocation = true
+        
+        
         //Will access the users location and update when there is a change (Will only work if the user agrees to use location settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
