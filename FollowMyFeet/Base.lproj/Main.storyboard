@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,15 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kbw-IL-NNt">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kbw-IL-NNt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="MEp-wD-Nr7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kbw-IL-NNt" secondAttribute="trailing" id="eu4-FG-gby"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kbw-IL-NNt" secondAttribute="bottom" id="h9W-Zr-kTD"/>
-                            <constraint firstItem="kbw-IL-NNt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="uag-vX-A5z"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kbw-IL-NNt" secondAttribute="bottom" id="JIU-Wv-Wu2"/>
+                            <constraint firstItem="kbw-IL-NNt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Rk9-Ug-jvY"/>
+                            <constraint firstAttribute="trailing" secondItem="kbw-IL-NNt" secondAttribute="trailing" id="hAx-LY-eph"/>
+                            <constraint firstItem="kbw-IL-NNt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qqA-mH-iQI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -36,6 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="305" y="357"/>
         </scene>
     </scenes>
 </document>

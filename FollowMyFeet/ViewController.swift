@@ -113,6 +113,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let region : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         
         self.map.setRegion(region, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
