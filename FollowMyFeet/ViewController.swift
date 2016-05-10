@@ -15,14 +15,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var map: MKMapView!
     
     let locationManager = CLLocationManager()
-    
+    var data: dataAccess = dataAccess.sharedInstance
+    var locs: [Location]?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.map.showsUserLocation = true
         
-        
+        locs = data.getAllLocations()
+        for i in locs!{
+            placePins(i)
+            //data.testDelete(i)
+        }
         //Will access the users location and update when there is a change (Will only work if the user agrees to use location settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -78,9 +83,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let touchPoint = gestureRecogniser.locationInView(self.map)
         
         let newCoordinate : CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
-        
         let annotation = MKPointAnnotation()
-        
+        data.createLocation(newCoordinate, latDelta: 0.01, longDelta: 0.01)
         //set location, title and subtitle of annotation
         annotation.coordinate = newCoordinate
         annotation.title = "New Place"
@@ -92,9 +96,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
+    func placePins(loc: Location){
+        let annotation = MKPointAnnotation()
+        let latitude: CLLocationDegrees = loc.latitude as! CLLocationDegrees
+        let longitude: CLLocationDegrees = loc.longitude as! CLLocationDegrees
+        //set location, title and subtitle of annotation
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        annotation.coordinate = location
+        annotation.title = "New Place"
+        annotation.subtitle = "Cool...."
+        map.addAnnotation(annotation)
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print(locations)
+        //print(locations)
         
         let userLocation : CLLocation = locations[0]
         

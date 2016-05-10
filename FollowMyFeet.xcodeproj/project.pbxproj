@@ -16,6 +16,11 @@
 		31A9C2021CDDDEC80099E4AE /* FollowMyFeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A9C2011CDDDEC80099E4AE /* FollowMyFeetTests.swift */; };
 		31A9C20D1CDDDEC80099E4AE /* FollowMyFeetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A9C20C1CDDDEC80099E4AE /* FollowMyFeetUITests.swift */; };
 		31A9C21B1CDDE6DC0099E4AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A9C21A1CDDE6DC0099E4AE /* CoreLocation.framework */; };
+		E7166C631CE2252300D36276 /* Path+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C5F1CE2252300D36276 /* Path+CoreDataProperties.swift */; };
+		E7166C641CE2252300D36276 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C601CE2252300D36276 /* Path.swift */; };
+		E7166C651CE2252300D36276 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C611CE2252300D36276 /* Location+CoreDataProperties.swift */; };
+		E7166C661CE2252300D36276 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C621CE2252300D36276 /* Location.swift */; };
+		E7166C681CE2253600D36276 /* dataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C671CE2253600D36276 /* dataAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		31A9C20C1CDDDEC80099E4AE /* FollowMyFeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowMyFeetUITests.swift; sourceTree = "<group>"; };
 		31A9C20E1CDDDEC80099E4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31A9C21A1CDDE6DC0099E4AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E7166C5F1CE2252300D36276 /* Path+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E7166C601CE2252300D36276 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		E7166C611CE2252300D36276 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E7166C621CE2252300D36276 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		E7166C671CE2253600D36276 /* dataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +115,16 @@
 			children = (
 				31A9C1E91CDDDEC80099E4AE /* AppDelegate.swift */,
 				31A9C1EB1CDDDEC80099E4AE /* ViewController.swift */,
+				E7166C671CE2253600D36276 /* dataAccess.swift */,
 				31A9C1ED1CDDDEC80099E4AE /* Main.storyboard */,
 				31A9C1F31CDDDEC80099E4AE /* Assets.xcassets */,
 				31A9C1F51CDDDEC80099E4AE /* LaunchScreen.storyboard */,
 				31A9C1F81CDDDEC80099E4AE /* Info.plist */,
 				31A9C1F01CDDDEC80099E4AE /* FollowMyFeet.xcdatamodeld */,
+				E7166C5F1CE2252300D36276 /* Path+CoreDataProperties.swift */,
+				E7166C601CE2252300D36276 /* Path.swift */,
+				E7166C611CE2252300D36276 /* Location+CoreDataProperties.swift */,
+				E7166C621CE2252300D36276 /* Location.swift */,
 			);
 			path = FollowMyFeet;
 			sourceTree = "<group>";
@@ -266,9 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7166C631CE2252300D36276 /* Path+CoreDataProperties.swift in Sources */,
 				31A9C1F21CDDDEC80099E4AE /* FollowMyFeet.xcdatamodeld in Sources */,
+				E7166C651CE2252300D36276 /* Location+CoreDataProperties.swift in Sources */,
 				31A9C1EC1CDDDEC80099E4AE /* ViewController.swift in Sources */,
+				E7166C641CE2252300D36276 /* Path.swift in Sources */,
 				31A9C1EA1CDDDEC80099E4AE /* AppDelegate.swift in Sources */,
+				E7166C661CE2252300D36276 /* Location.swift in Sources */,
+				E7166C681CE2253600D36276 /* dataAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +515,7 @@
 				31A9C2131CDDDEC80099E4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31A9C2141CDDDEC80099E4AE /* Build configuration list for PBXNativeTarget "FollowMyFeetTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +524,7 @@
 				31A9C2161CDDDEC80099E4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31A9C2171CDDDEC80099E4AE /* Build configuration list for PBXNativeTarget "FollowMyFeetUITests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +533,7 @@
 				31A9C2191CDDDEC80099E4AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
