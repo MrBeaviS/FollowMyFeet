@@ -26,7 +26,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Will access the users location and update when there is a change (Will only work if the user agrees to use location settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization() //should be in use not always??
         locationManager.startUpdatingLocation()
         
         
