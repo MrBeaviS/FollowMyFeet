@@ -15,13 +15,15 @@ class dataAccess {
     static let sharedInstance = dataAccess()
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
-    func createLocation(location: CLLocationCoordinate2D, latDelta: CLLocationDegrees, longDelta: CLLocationDegrees) {
+    func createLocation(location: CLLocationCoordinate2D, latDelta: CLLocationDegrees, longDelta: CLLocationDegrees, name: String, info: String) {
         print(location)
         let storedLocation: Location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
         storedLocation.latitude = location.latitude
         storedLocation.longitude = location.longitude
         storedLocation.latDelta = latDelta
         storedLocation.longDelta = longDelta
+        storedLocation.name = name
+        storedLocation.info = info
         self.saveData()
     }
     
