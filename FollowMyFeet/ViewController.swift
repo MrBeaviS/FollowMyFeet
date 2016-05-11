@@ -12,6 +12,11 @@ import CoreLocation
 import Foundation
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBAction func returnToLoc(sender: AnyObject) {
+        latitude = nil
+        longitude = nil
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBOutlet weak var map: MKMapView!
     
     var annotationName: String?
@@ -19,6 +24,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let locationManager = CLLocationManager()
     var data: dataAccess = dataAccess.sharedInstance
     var locs: [Location]?
+    var latitude: NSNumber?
+    var longitude: NSNumber?
+    
+    let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        map.setRegion(coordinateRegion, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,9 +49,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        
+        if (latitude != nil && longitude != nil){
+        let initialLocation = CLLocation(latitude: CLLocationDegrees(latitude!), longitude: CLLocationDegrees(longitude!))
+        centerMapOnLocation(initialLocation)
+        }
+
         
 //        //Create Long/Lat variables of type CLLocationDegrees
 //        let latitude : CLLocationDegrees = -34.405404

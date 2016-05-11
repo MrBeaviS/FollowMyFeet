@@ -20,6 +20,7 @@ extension Location {
     @NSManaged var latDelta: NSNumber?
     @NSManaged var name: String?
     @NSManaged var info: String?
+    @NSManaged var dateCreated: NSDate?
     @NSManaged var path: Path?
 
 }

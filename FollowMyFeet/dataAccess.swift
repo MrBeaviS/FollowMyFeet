@@ -24,6 +24,7 @@ class dataAccess {
         storedLocation.longDelta = longDelta
         storedLocation.name = name
         storedLocation.info = info
+        storedLocation.dateCreated = NSDate()
         self.saveData()
     }
     
