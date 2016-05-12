@@ -34,11 +34,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         map.setRegion(coordinateRegion, animated: true)
     }
     
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.redColor()
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.map.showsUserLocation = true
+        /*self.map.showsUserLocation = true
         
         locs = data.getAllLocations()
         for i in locs!{
@@ -52,37 +60,69 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if (latitude != nil && longitude != nil){
         let initialLocation = CLLocation(latitude: CLLocationDegrees(latitude!), longitude: CLLocationDegrees(longitude!))
         centerMapOnLocation(initialLocation)
+        }*/
+        // 1. The ViewController is the delegate of the MKMapViewDelegate protocol
+        map.delegate = self
+        
+        // 2. Set the latitude and longtitude of the locations
+        let sourceLocation = CLLocationCoordinate2D(latitude: 40.759011, longitude: -73.984472)
+        let destinationLocation = CLLocationCoordinate2D(latitude: 40.748441, longitude: -73.985564)
+        
+        // 3. Create placemark objects containing the location's coordinates
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        
+        // 4. MKMapitems are used for routing. This class encapsulates information about a specific point on the map
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        // 5. Annotations are added which shows the name of the placemarks
+        let sourceAnnotation = MKPointAnnotation()
+        sourceAnnotation.title = "Times Square"
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
         }
-
         
-//        //Create Long/Lat variables of type CLLocationDegrees
-//        let latitude : CLLocationDegrees = -34.405404
-//        let longitude : CLLocationDegrees = 150.878409
-//        
-//        //Delta is difference of latitutudes/longtitudes from one side of screen to another
-//        let latDelta : CLLocationDegrees = 0.01 //0.01 is zoomed in, 0.1 is fairly zoomed out
-//        let longDelta : CLLocationDegrees = 0.01
-//        
-//        //combination of 2 deltas, 2 changes between degrees
-//        let span : MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-//        
-//        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-//        
-//        let region : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-//        
-//        map.setRegion(region, animated: true)
         
-//        
-//        //create anotation AKA "Pin"
-//        let annotation = MKPointAnnotation()
-//        
-//        //set location, title and subtitle of annotation
-//        annotation.coordinate = location
-//        annotation.title = "UOW"
-//        annotation.subtitle = "AKA Hell!!!"
-//        
-//        //add to map
-//        map.addAnnotation(annotation)
+        let destinationAnnotation = MKPointAnnotation()
+        destinationAnnotation.title = "Empire State Building"
+        
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        // 6. The annotations are displayed on the map
+        self.map.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+        
+        // 7. The MKDirectionsRequest class is used to compute the route.
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .Automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        // 8.The route will be drawn using a polyline as a overlay view on top of the map. The region is set so both locations will be visible
+        directions.calculateDirectionsWithCompletionHandler {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        }
+        
         
         //allow user to long press on map
         let uilpgr = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.action(_:)))
