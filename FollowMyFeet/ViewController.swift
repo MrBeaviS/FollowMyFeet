@@ -9,14 +9,34 @@
 import UIKit
 import MapKit
 import CoreLocation
-
+import Foundation
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+    @IBAction func returnToLoc(sender: AnyObject) {
+        latitude = nil
+        longitude = nil
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBOutlet weak var map: MKMapView!
     
+    var annotationName: String?
+    var annotationInfo: String?
     let locationManager = CLLocationManager()
     var data: dataAccess = dataAccess.sharedInstance
     var locs: [Location]?
+<<<<<<< HEAD
+=======
+    var latitude: NSNumber?
+    var longitude: NSNumber?
+    
+    let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        map.setRegion(coordinateRegion, animated: true)
+    }
+    
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,10 +51,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //Will access the users location and update when there is a change (Will only work if the user agrees to use location settings
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+<<<<<<< HEAD
         locationManager.requestWhenInUseAuthorization() //should be in use not always??
         locationManager.startUpdatingLocation()
         
         
+=======
+        locationManager.requestWhenInUseAuthorization()
+        if (latitude != nil && longitude != nil){
+        let initialLocation = CLLocation(latitude: CLLocationDegrees(latitude!), longitude: CLLocationDegrees(longitude!))
+        centerMapOnLocation(initialLocation)
+        }
+
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
         
 //        //Create Long/Lat variables of type CLLocationDegrees
 //        let latitude : CLLocationDegrees = -34.405404
@@ -78,24 +107,63 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     //action finction recieves var gestureRecogniser
     func action(gestureRecogniser : UIGestureRecognizer){
         print("gesture Recognised")
-        
         //location of longpress relative to the map
         let touchPoint = gestureRecogniser.locationInView(self.map)
         
         let newCoordinate : CLLocationCoordinate2D = map.convertPoint(touchPoint, toCoordinateFromView: self.map)
+<<<<<<< HEAD
         let annotation = MKPointAnnotation()
         data.createLocation(newCoordinate, latDelta: 0.01, longDelta: 0.01)
+=======
+        
+        pinCreate(newCoordinate)
+        
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
         //set location, title and subtitle of annotation
-        annotation.coordinate = newCoordinate
-        annotation.title = "New Place"
-        annotation.subtitle = "Cool...."
+        
         
         //add to map
-        map.addAnnotation(annotation)
         
         
     }
     
+<<<<<<< HEAD
+=======
+    func pinCreate(newCoordinate: CLLocationCoordinate2D){
+        var annotationName: String?
+        var annotationInfo: String?
+        let addLocationAlert = UIAlertController(title:  "Add a new Location",message: "Location Details", preferredStyle: UIAlertControllerStyle.Alert)
+        addLocationAlert.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.placeholder = "Enter Location Name"
+        }
+        addLocationAlert.addTextFieldWithConfigurationHandler { (textField: UITextField!) -> Void in
+            textField.placeholder = "Enter Location Info"
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .Default) { (alert: UIAlertAction!) -> Void in
+            addLocationAlert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        let createButton = UIAlertAction(title: "Create", style: .Default) { (alert: UIAlertAction!) -> Void in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = newCoordinate
+            if let text = addLocationAlert.textFields![0].text where !text.isEmpty {
+                annotationName = text
+            }
+            if let text = addLocationAlert.textFields![1].text where !text.isEmpty {
+                annotationInfo = text
+            }
+            annotation.title = annotationName
+            annotation.subtitle = annotationInfo
+            self.map.addAnnotation(annotation)
+            self.data.createLocation(newCoordinate, latDelta: 0.01, longDelta: 0.01, name: annotationName!, info: annotationInfo!)
+        }
+
+        addLocationAlert.addAction(cancelButton)
+        addLocationAlert.addAction(createButton)
+        presentViewController(addLocationAlert, animated:true, completion: nil)
+
+    }
+    
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
     func placePins(loc: Location){
         let annotation = MKPointAnnotation()
         let latitude: CLLocationDegrees = loc.latitude as! CLLocationDegrees
@@ -103,8 +171,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         //set location, title and subtitle of annotation
         let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         annotation.coordinate = location
+<<<<<<< HEAD
         annotation.title = "New Place"
         annotation.subtitle = "Cool...."
+=======
+        annotation.title = loc.name
+        annotation.subtitle = loc.info
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
         map.addAnnotation(annotation)
     }
     

@@ -21,6 +21,10 @@
 		E7166C651CE2252300D36276 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C611CE2252300D36276 /* Location+CoreDataProperties.swift */; };
 		E7166C661CE2252300D36276 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C621CE2252300D36276 /* Location.swift */; };
 		E7166C681CE2253600D36276 /* dataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C671CE2253600D36276 /* dataAccess.swift */; };
+<<<<<<< HEAD
+=======
+		E7166C6A1CE2CEA900D36276 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7166C691CE2CEA900D36276 /* LocationViewController.swift */; };
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,11 @@
 		E7166C611CE2252300D36276 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E7166C621CE2252300D36276 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E7166C671CE2253600D36276 /* dataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataAccess.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		E7166C691CE2CEA900D36276 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		E7166C6B1CE2D19000D36276 /* FollowMyFeet 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FollowMyFeet 2.xcdatamodel"; sourceTree = "<group>"; };
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +126,7 @@
 				31A9C1EB1CDDDEC80099E4AE /* ViewController.swift */,
 				E7166C671CE2253600D36276 /* dataAccess.swift */,
 				31A9C1ED1CDDDEC80099E4AE /* Main.storyboard */,
+				E7166C691CE2CEA900D36276 /* LocationViewController.swift */,
 				31A9C1F31CDDDEC80099E4AE /* Assets.xcassets */,
 				31A9C1F51CDDDEC80099E4AE /* LaunchScreen.storyboard */,
 				31A9C1F81CDDDEC80099E4AE /* Info.plist */,
@@ -287,6 +297,10 @@
 				31A9C1EC1CDDDEC80099E4AE /* ViewController.swift in Sources */,
 				E7166C641CE2252300D36276 /* Path.swift in Sources */,
 				31A9C1EA1CDDDEC80099E4AE /* AppDelegate.swift in Sources */,
+<<<<<<< HEAD
+=======
+				E7166C6A1CE2CEA900D36276 /* LocationViewController.swift in Sources */,
+>>>>>>> 8c212f7579cd3e22e0ac731d3f18a6fc1476a551
 				E7166C661CE2252300D36276 /* Location.swift in Sources */,
 				E7166C681CE2253600D36276 /* dataAccess.swift in Sources */,
 			);
@@ -541,6 +555,7 @@
 		31A9C1F01CDDDEC80099E4AE /* FollowMyFeet.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E7166C6B1CE2D19000D36276 /* FollowMyFeet 2.xcdatamodel */,
 				31A9C1F11CDDDEC80099E4AE /* FollowMyFeet.xcdatamodel */,
 			);
 			currentVersion = 31A9C1F11CDDDEC80099E4AE /* FollowMyFeet.xcdatamodel */;
